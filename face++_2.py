@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jun  5 19:44:11 2018
-
-@author: lenovo
+face++2.0
+Created on 2018-7-23 16:00:06
+@author: xinxin8816
 """
 
 import requests
@@ -10,7 +10,6 @@ from json import JSONDecoder
 import time
 import cv2
 import os
-
 
 key ="wUkL-ctNFvh_f6A-Qp9b2bTKaPyn1I3I"
 secret ="1JEHsrIholzaA2v91LkW4JL9F1G-LzB9"

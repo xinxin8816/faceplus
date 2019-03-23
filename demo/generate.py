@@ -1,5 +1,9 @@
 #!/usr/bin/env python
-#coding=utf-8
+# -*- coding: utf-8 -*-
+"""
+Created on 2018-3-23 16:00:06
+@author: xinxin8816
+"""
 import cv2
 import os  
 import sys
@@ -35,7 +39,6 @@ def generate(root_argv,dirname):
 
         except:
             pass
-
 
 if __name__ == '__main__':
     if len(sys.argv)==1:

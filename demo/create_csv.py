@@ -1,8 +1,13 @@
 #!/usr/bin/env python
-#coding=utf-8
+# -*- coding: utf-8 -*-
+"""
+Created on 2018-3-23 16:00:06
+@author: xinxin8816
+"""
 import sys
 import os.path
 #import Image
+
 if __name__ == '__main__':
     if len(sys.argv) != 2:
         print "usage: create_csv.py <生成的人脸数据路径>"

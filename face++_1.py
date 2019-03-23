@@ -16,7 +16,7 @@ filepath3 = "D:\Study\\test\demo\data\yun\\3.jpg"
 #files = {"image_file": open(filepath1, "rb")}
 #cap = cv2.VideoCapture(0)
 
-def detect_face(filepath):#传入图片文件
+def detect_face(filepath):#上传图片至face++服务器
     http_url ="https://api-cn.faceplusplus.com/facepp/v3/detect"
     files = {"image_file": open(filepath, "rb")}
     data = {"api_key":key, "api_secret": secret, "return_gesture": "1"}
@@ -29,7 +29,7 @@ def detect_face(filepath):#传入图片文件
     print(req_dict)
     return req_dict
 
-def detect_face_64(image_base64):#传入base64编码
+def detect_face_64(image_base64):#以base64二级制编码方式上传
     http_url ="https://api-cn.faceplusplus.com/facepp/v3/detect"
     params = {
             'api_key':key,
@@ -55,7 +55,7 @@ def set_face(outer_id):#创建一个人脸的集合 FaceSet，用于存储人脸
     return req_dict
 
 
-def compare(faceId1, faceId2):
+def compare(faceId1, faceId2):#对比两个人脸标识 face_token 来判断是否是同一个人。
     params = {}
     url = 'https://api-cn.faceplusplus.com/facepp/v3/compare'
     params['face_token1'] = faceId1
@@ -79,7 +79,7 @@ def addface(faceset,facetokens):#为一个已经创建的 FaceSet 添加人脸�
     print(req_dict)
     return req_dict
 
-def get_face_set():
+def get_face_set():#获取所有 FaceSet id
     url = 'https://api-cn.faceplusplus.com/facepp/v3/faceset/getfacesets'
     params = {
             'api_key':key,
@@ -92,7 +92,7 @@ def get_face_set():
     print(req_dict)
     return req_dict
     
-def delete_faceset(faceset_token,check_empty):
+def delete_faceset(faceset_token,check_empty):#删除指定 FaceSet
     url = 'https://api-cn.faceplusplus.com/facepp/v3/faceset/delete'
     params = {
             'api_key':key,
@@ -106,7 +106,7 @@ def delete_faceset(faceset_token,check_empty):
     print(req_dict)
     return req_dict
 
-def faceset_update(faceset_token,display_name,user_data):#更新一个人脸集合的属性
+def faceset_update(faceset_token,display_name,user_data):#更新一个人脸标识 faceset_token 属性（显示名、自定义内容）
     url = 'https://api-cn.faceplusplus.com/facepp/v3/faceset/update'
     params = {
             'api_key':key,
@@ -121,7 +121,7 @@ def faceset_update(faceset_token,display_name,user_data):#更新一个人脸集�
     print(req_dict)
     return req_dict
 
-def faceset_getdetail(faceset_token):
+def faceset_getdetail(faceset_token):#获取一个 FaceSet 的所有信息
     url = 'https://api-cn.faceplusplus.com/facepp/v3/faceset/getdetail'
     params = {
             'api_key':key,
@@ -134,7 +134,7 @@ def faceset_getdetail(faceset_token):
     print(req_dict)
     return req_dict
 
-def face_compare(image_file1,face_token2):
+def face_compare(image_file1,face_token2):#即时识别图像人脸，并对比人脸标识 face_token 来判断是否是同一个人，1对1。
     url = 'https://api-cn.faceplusplus.com/facepp/v3/compare'
     files = {"image_file1": open(image_file1, "rb")}
     params = {
@@ -148,13 +148,13 @@ def face_compare(image_file1,face_token2):
     print(req_dict)
     return req_dict
 
-def face_search(image_file1,faceset_token):
+def face_search(image_file1,faceset_token):#即时识别图像人脸，并搜索 FaceSet 来是否拥有同一个人，1对N。
     url = 'https://api-cn.faceplusplus.com/facepp/v3/search'
     files = {"image_file": open(image_file1, "rb")}
     params = {
             'api_key':key,
             'api_secret':secret,
-            'faceset_token':faceset_token
+            'faceset_token':faceset_token,
             }
     r = requests.post(url,files = files,data = params)
     req_con = r.content.decode('utf-8')
@@ -162,7 +162,7 @@ def face_search(image_file1,faceset_token):
     print(req_dict)
     return req_dict
 
-def face_SetUserID(face_token,user_id):#为检测出的某一个人脸添加标识信息，该信息会在Search接口结果中返回，用来确定用户身份。
+def face_SetUserID(face_token,user_id):#增加一个人脸标识 faceset_token 属性（显示名、自定义内容）
     url = 'https://api-cn.faceplusplus.com/facepp/v3/face/setuserid'
     params = {
             'api_key':key,
