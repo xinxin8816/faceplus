@@ -17,14 +17,14 @@ def makedir(path):
 
 def generate(root_argv,dirname):
     subject_dir_path = os.path.join(root_argv, dirname)
-    print 'seek:'+subject_dir_path
+    print ('seek:'+subject_dir_path)
     count=0
     for filename in os.listdir(subject_dir_path): 
         if filename == ".directory":
             continue
         imgPath = os.path.join(subject_dir_path, filename)
         try:
-            print 'read:'+imgPath
+            print ('read:'+imgPath)
             img = cv2.imread(imgPath)
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             outdir=os.path.join(root_argv,'generate',dirname)
@@ -33,7 +33,7 @@ def generate(root_argv,dirname):
             for x,y,w,h in faces:
                 f=cv2.resize(gray[y:y+h,x:x+w],(200,200))
                 outPath=os.path.join(root_argv,'generate',dirname,'%s.pgm' % str(count))
-                print 'write:'+ outPath
+                print ('write:'+ outPath)
                 cv2.imwrite(outPath, f)
                 count+=1
 

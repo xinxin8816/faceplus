@@ -10,7 +10,7 @@ import os.path
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print "usage: create_csv.py <生成的人脸数据路径>"
+        print ("usage: create_csv.py <生成的人脸数据路径>")
         sys.exit(0)
 
     BASE_PATH=sys.argv[1]
