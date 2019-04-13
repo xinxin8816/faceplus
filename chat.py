@@ -6,6 +6,12 @@ Created on 2018-4-10 9:58:40
 import network
 import sys
 
+if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        print("主机模式")
+    else:
+        print("客户端模式")
+
 def heard(phrase):
 	print("them:" + phrase)
 

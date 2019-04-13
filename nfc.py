@@ -5,6 +5,9 @@ Created on 2019-4-13 08:36:37
 """
 import os
 import re
-nfcdata = os.popen('ls')
+
+nfcdata = os.popen('nfc-list')
 type(nfcdata)
-print nfcdata.readlines()
+print(nfcdata.readlines())
+arr = nfcdata.readlines().split(',')
+print(arr[3])
