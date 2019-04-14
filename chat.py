@@ -11,21 +11,32 @@ import pandas as pd
 database_PATH = 'database.csv'
 
 
-def adddata(outer_id, displayname, lockright):#数据库增加新行
+def adddata(outer_id, displayname, lockright):  # 数据库增加新行
     row = [outer_id, displayname, lockright]
-    out = open(database_PATH, "a", newline="")
-    csv_writer = csv.writer(out, dialect="excel")
-    csv_writer.writerow(row)
-    return csv_writer
+    with open(database_PATH, "a", encoding="ANSI") as database:
+        csv_writer = csv.writer(database, dialect="excel")
+        csv_writer.writerow(row)
 
-def deldata(outer_id):#数据库删除行
-    odata = pd.read_csv(database_PATH)
+
+def deldata(outer_id):  # 数据库删除行
+    odata = pd.read_csv(database_PATH, encoding='ANSI')
     with open(database_PATH, "r", encoding="ANSI") as database:
         reader = csv.DictReader(database)
         name = [row['outer_id'] for row in reader]
-    print(name)
     site = name.index(outer_id)
     odata.drop(odata.index[site], inplace=True)
+
+
+def updatedata(outer_id, lockright):  # 数据库修改lock权限
+    with open(database_PATH, "r", encoding="ANSI") as database:
+        reader = csv.DictReader(database)
+        name = [row['outer_id'] for row in reader]
+        site = name.index(outer_id)
+        displayname = [row['displayname'] for row in reader]
+    print(displayname[site])
+    deldata(outer_id)
+    adddata(outer_id, displayname[site], lockright)
+
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
