@@ -25,6 +25,7 @@ def deldata(outer_id):  # 数据库删除行
         name = [row['outer_id'] for row in reader]
     site = name.index(outer_id)
     odata.drop(odata.index[site], inplace=True)
+    odata.to_csv(database_PATH, mode="w", header=True, index=False)
 
 
 def updatedata(outer_id, lockright):  # 数据库修改lock权限
