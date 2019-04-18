@@ -50,7 +50,8 @@ def heard(phrase):
     print("Receive:" + phrase)
     print(phrase.split())
     if phrase.split()[0] == 'doing':
-        sys.exit(0)
+        if phrase.split()[1] == 'add':
+            sys.exit(0)
 
 
 if (len(sys.argv) >= 2):
@@ -59,7 +60,7 @@ else:
     network.wait(whenHearCall=heard)
 
 while network.isConnected():
-    phrase = raw_input()  # python2
-    # phrase = input()
+    phrase = raw_input()# python2
+    #phrase = input()
     print("Send:" + phrase)
     network.say(phrase)
