@@ -6,9 +6,9 @@ Created on 2018-3-23 16:00:06
 """
 import cv2
 import os  
-import syspip
+import sys
 
-face_cascade=cv2.CascadeClassifier('/usr/local/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
+face_cascade=cv2.CascadeClassifier('/data/lib/haarcascade_frontalface_default.xml')
 
 def makedir(path):
     path=path.strip().rstrip('/')

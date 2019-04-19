@@ -6,6 +6,8 @@ Created on 2019-1-20 16:00:06
 @author: xinxin8816
 """
 
+from picamera.array import PiRGBArray
+from picamera import PiCamera
 import multiprocessing as mp
 import cv2
 import os
@@ -16,11 +18,12 @@ import numpy as np
 resX = 640
 resY = 480
 
-face_cascade = cv2.CascadeClassifier('/usr/local/share/OpenCV/lbpcascades/lbpcascade_frontalface.xml')
+face_cascade = cv2.CascadeClassifier('/data/lib/lbpcascade_frontalface.xml')
 
 #三种识别算法，△留意Python2.7语法不同 2019-1-21
-#model = cv2.face.createEigenFaceRecognizer()
-model = cv2.face.FisherFaceRecognizer_create()
+model = cv2.createEigenFaceRecognizer()
+#model = cv2.face.createEigenFaceRecognizer() #OpenCV
+#model = cv2.FisherFaceRecognizer_create()
 #model = cv2.createLBPHFaceRecognizer()
 t_start = time.time()
 fps = 0
@@ -50,7 +53,7 @@ def load_images(path, sz=None):
                     filepath = os.path.join(subject_path, filename)
                     if os.path.isdir(filepath):
                         continue
-                    img = cv2.imread(os.path.join(subject_path, filename), cv2.IMREAD_GRAYSCALE)
+                    img = cv2.imread(os.path.join(subject_path, filename), 0)
                     if (img is None):
                         print ("image " + filepath + " is none")
                     else:
@@ -97,7 +100,7 @@ def draw_frame( faces, img, gray ):
 
 if __name__ == '__main__':
     camera = cv2.VideoCapture(0)
-    camera.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,resX)  
+    camera.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,resX)
     camera.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT,resY)
     pool = mp.Pool( processes=4 )
     #人名与datamap.csv数据库里面的对应
@@ -111,11 +114,11 @@ if __name__ == '__main__':
         out_dir = sys.argv[2]
     model.train(np.asarray(X), np.asarray(y))
     read, img = camera.read()
-    pr1 = pool.apply_async( get_faces, [ img ] )   
+    pr1 = pool.apply_async( get_faces, [ img ] )
     read, img = camera.read()
-    pr2 = pool.apply_async( get_faces, [ img ] )  
-    read, img = camera.read() 
-    pr3 = pool.apply_async( get_faces, [ img ] )   
+    pr2 = pool.apply_async( get_faces, [ img ] )
+    read, img = camera.read()
+    pr3 = pool.apply_async( get_faces, [ img ] )
     read, img = camera.read()
     pr4 = pool.apply_async( get_faces, [ img ] )
     fcount = 1
