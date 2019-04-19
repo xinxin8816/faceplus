@@ -6,7 +6,7 @@ Created on 2018-3-23 16:00:06
 """
 import cv2
 import os  
-import sys
+import syspip
 
 face_cascade=cv2.CascadeClassifier('/usr/local/share/OpenCV/haarcascades/haarcascade_frontalface_default.xml')
 
@@ -19,7 +19,7 @@ def generate(root_argv,dirname):
     subject_dir_path = os.path.join(root_argv, dirname)
     print ('seek:'+subject_dir_path)
     count=0
-    for filename in os.listdir(subject_dir_path): 
+    for filename in os.listdir(subject_dir_path):
         if filename == ".directory":
             continue
         imgPath = os.path.join(subject_dir_path, filename)
@@ -47,8 +47,8 @@ if __name__ == '__main__':
 
     root_argv=sys.argv[1]
     for dirname in os.listdir(root_argv):
-        file_path = os.path.join(root_argv, dirname)  
-        if os.path.isdir(file_path): 
+        file_path = os.path.join(root_argv, dirname)
+        if os.path.isdir(file_path):
             if dirname == 'generate':
                 continue
             generate(root_argv,dirname)

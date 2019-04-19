@@ -1,0 +1,12 @@
+libjasper-dev
+libhdf5-dev
+libqt4-test
+libatlas-base-dev
+libqtgui4
+network
+csv
+pandas
+cv2
+numpy
+multiprocessing
+requests
