@@ -1,5 +1,4 @@
 libjasper-dev
-syspip
 libhdf5-dev
 libqt4-test
 libatlas-base-dev

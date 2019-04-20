@@ -1,4 +1,4 @@
-# -- coding: utf-8 -- 
+# coding:utf-8
 """
 Created on 2018-4-1 12:00:48
 @author: xinxin8816
