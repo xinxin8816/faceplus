@@ -4,6 +4,17 @@ A simple face recognition based on Python.Includes local and cloud dual recognit
 
 ------
 
+##Result demo
+![image](https://github.com/xinxin8816/faceplus/raw/master/screenshots/图片1.jpg)
+
+![image](https://github.com/xinxin8816/faceplus/raw/master/screenshots/图片2.jpg)
+
+![image](https://github.com/xinxin8816/faceplus/raw/master/screenshots/图片3.png)
+
+![image](https://github.com/xinxin8816/faceplus/raw/master/screenshots/图片4.png)
+
+------
+
 ## Environment
 
 Based on Python 2.7, Theoretical support for Python 3.x.
