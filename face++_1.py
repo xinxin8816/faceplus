@@ -7,11 +7,11 @@ import requests
 from json import JSONDecoder
 import cv2
 
-key = "pM5Sh3M8qcF9503Q0fsBOgvH26vNq8Pv"
+key = "pM5Sh3M8qcF9503Q0fsBOgvH26vNq8Pv" #来自旷视科技的API，此key有调用频率限制
 secret = "UPziWDeLgHDyqhIEnuYqGTUzZOniW8I4"
-filepath1 = "D:\Study\\test\demo\data\yun\\1.jpg"
-filepath2 = "D:\Study\\test\demo\data\yun\\2.jpg"
-filepath3 = "D:\Study\\test\demo\data\yun\\3.jpg"
+filepath1 = "\demo\data\yun\\1.jpg"
+filepath2 = "\demo\data\yun\\2.jpg"
+filepath3 = "\demo\data\yun\\3.jpg"
 
 
 # files = {"image_file": open(filepath1, "rb")}

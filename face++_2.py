@@ -11,11 +11,11 @@ import time
 import cv2
 import os
 
-key = "wUkL-ctNFvh_f6A-Qp9b2bTKaPyn1I3I"
+key = "wUkL-ctNFvh_f6A-Qp9b2bTKaPyn1I3I" #来自旷视科技的API，此key有调用频率限制
 secret = "1JEHsrIholzaA2v91LkW4JL9F1G-LzB9"
-filepath1 = "D:\Study\树莓派\\test\data\yun\\1.jpg"
-filepath2 = "D:\Study\树莓派\\test\data\yun\\2.jpg"
-filepath3 = "D:\Study\树莓派\\test\data\yun\\3.jpg"
+filepath1 = "\data\yun\\1.jpg"
+filepath2 = "\data\yun\\2.jpg"
+filepath3 = "\data\yun\\3.jpg"
 data = {"api_key": key, "api_secret": secret}
 
 
