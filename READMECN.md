@@ -1,72 +1,82 @@
 # faceplus
-A simple face recognition based on Python
+A simple face recognition based on Python. Includes local and cloud dual modes.
+中文 [ReadmeCN](https://github.com/xinxin8816/faceplus/blob/master/READMECN.md "ReadmeCN")
 
 ------
 
-## 环境准备
+## Environment
 
-开发基于Python2.7，理论支持Python3.x。
+Based on Python 2.7, Theoretical support for Python 3.x.
 
-#### 安装OpenCV2.x开发环境
+#### Install OpenCV2.x
 
 	sudo apt-get install -y libopencv-dev python-opencv libopencv-contrib-dev
 
-#### 安装一些其它工具
+#### Install Other tools
 
 	sudo apt-get install -y python-picamera python-pil python-tk
 
-#### 摄像头配置
-	sudo vim /etc/modules-load.d/modules.conf   //文件尾部添加一行 bcm2835-v4l2
-	echo -e "\nbcm2835-v4l2" | sudo tee -a /etc/modules-load.d/modules.conf  //增加快捷方式
+#### Configuring camera
+	sudo vim /etc/modules-load.d/modules.conf   //Add "bcm2835-v4l2" to the last line
+	echo -e "\nbcm2835-v4l2" | sudo tee -a /etc/modules-load.d/modules.conf  //Add shortcuts
 
-#### 自编译 OpenCV3.x 开发环境(可选)
-需自行编译安装，树莓派3B+ 编译大约4小时。注意！OpenCV3版本需要修改如下内容：
+#### Self-compilation OpenCV3.x (optional)
+You need to compile and install it yourself. The Raspberry Pi 3B+ is compiled for about 4 hours. note! The OpenCV3 version needs to be modified as follows:
 
 	cv2.createEigenFaceRecognizer() —> cv2.face.EigenFaceRecognizer_create() 
 
 	cv2.rectangle() —> img = cv2.rectangle()
 
-#### Python依赖包 requirements.txt
+#### Python require package in requirements.txt
 
 ------
 
-## 本地模块说明
+## Local module description
 
-1. 图片提取人脸特征生成8-bit的灰度图像。第一个参数为人物照片路径，子文件夹以不同人来分类
+1. The picture extracts facial features to generate an 8-bit grayscale image. The first parameter is the person photo path, and the subfolders are classified by different people.
 
 		python generate.py ./data
 
-2. 灰度图像创建本地人脸数据库，第一个参数为上述生成的灰度图像路径，第二个参数为生成人脸数据库的路径
+2. The gray image creates a local face database, the first parameter is the gray image path generated above, and the second parameter is the path for generating the face database.
 
 		python create_csv.py ./data/generate/ > ./data/datamap.csv
 
-3. 进行人脸识别，第一个参数为上述生成的灰度图像路径，第二个参数为生成人脸数据库的路径
+3. Now let's start face recognition, the first parameter is the gray image path generated above, and the second parameter is the path to generate the face database.
 
 		python facerec.py ./data/generate ./data/datamap.csv
 
 ------
-## 文件说明
+## Files description
 
-data/lib 已经机器训练好的一些人脸数据库
+data/lib
+Some face databases that have been machine learning
 
-database.csv 权限数据库
+Database.csv
+Permission database
 
-demo/datamap.csv 本地识别用人脸数据库
+Demo/datamap.csv
+Local recognition face database
 
-demo.py 测试红外摄像头demo
+Demo.py
+Test infrared camera demo
 
-demo/generate.py 图片提取人脸特征生成8-bit的灰度图像
+Demo/generate.py
+Image extraction facial features generate 8-bit grayscale images
 
-demo/create_csv.py 灰度图像创建本地人脸数据库
+Demo/create_csv.py
+Grayscale image creation local face database
 
-demo/facerec.py 本地识别模块
+Demo/facerec.py
+Local identification module
 
-face++_1.py 云端识别模块
+Face++_1.py
+Cloud identification module
 
-face++_2.py 同上，和1本质上没太大区别
+Face++_2.py
+Same as above, and 1 is not much different in nature.
 
-gpio.py 硬件锁驱动模块
+Gpio.py
+Hardware lock driver module
 
-chat.py 联网模块，里面有包含修改权限数据库函数。直接运行chat.py是服务器模式，另外一台机子通过 chat.py+IP 运行来链接服务器。
-
-nfc.py NFC模块部分，用来获取卡UID
+Chat.py
+The networking module has a database function that contains modify permissions. Running chat.py directly is in server mode, and another machine runs through chat.py+IP to link the server.
